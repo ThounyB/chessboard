@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color: #333;
+}
+
+.board {
+    box-shadow: 2px 2px 20px -5px white;
+}
+
+.rank {
+    display: flex;
+}
+
+.dark {
+    background-color: #3b8d54;
+    width: 70px;
+    height: 70px;
+}
+
+.light {
+    background-color: rgb(249, 249, 249);
+    width: 70px;
+    height: 70px;
+}
