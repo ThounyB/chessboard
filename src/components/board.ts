@@ -1,4 +1,5 @@
 import { setupPieces } from "./pieces";
+import { movePieces } from "./movement";
 
 const LETTERS = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
@@ -11,15 +12,21 @@ function dragHandler(ev: any) {
 function dropHandler(event: any) {
     event.preventDefault();
 
-    const data = event.dataTransfer.getData("text");
+    const targetId = event.dataTransfer.getData("text");
 
-    console.log(event.target.id, data);
+    const dropTarget = event.target;
 
-    if (data.includes("pawn")) {
-        console.log("yep");
-    }
+    const draggedTarget = document.getElementById(targetId);
 
-    // event.target.appendChild(document.getElementById(data));
+    // HERE WE MODIFY THE DATA
+
+    movePieces(draggedTarget, dropTarget);
+
+    // if (draggedTarget?.dataset.type === "pawn") {
+    //     movePawn();
+    // }
+
+    // event.target.appendChild(document.getElementById(targetId));
 }
 
 function setupBoard() {
@@ -43,6 +50,9 @@ function setupBoard() {
             const location = `${LETTERS[i - 1]}${rank}`;
 
             square.id = location;
+
+            square.dataset.file = LETTERS[i - 1].toString();
+            square.dataset.rank = rank.toString();
 
             square.ondrop = dropHandler;
 

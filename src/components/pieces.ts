@@ -1,22 +1,31 @@
 const LETTERS = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
+/**
+ *  Starting setup for pawns
+ */
 function setupPawns() {
     // White pawns
     const secondRank = document.getElementById("rank-2");
 
     let i = 1;
-    secondRank?.childNodes.forEach((c: any) => {
-        const image = document.createElement("img");
-        image.id = `pawn-${LETTERS[i - 1]}2`;
-        image.classList.add("piece");
-        image.src = "../../images/pawn-white.svg";
-        image.draggable = true;
+    secondRank?.childNodes.forEach((c: Node) => {
+        const pawnWhite = document.createElement("img");
+        pawnWhite.id = `pawn-${LETTERS[i - 1]}2`;
+        pawnWhite.classList.add("piece");
 
-        image.addEventListener("dragstart", (e: any) => {
+        pawnWhite.dataset.type = "pawn";
+        pawnWhite.dataset.side = "white";
+        pawnWhite.dataset.rank = "2";
+        pawnWhite.dataset.file = LETTERS[i - 1].toString();
+
+        pawnWhite.src = "../../images/pawn-white.svg";
+        pawnWhite.draggable = true;
+
+        pawnWhite.addEventListener("dragstart", (e: any) => {
             e.dataTransfer.setData("text", e.target.id);
         });
 
-        c.appendChild(image);
+        c.appendChild(pawnWhite);
 
         i++;
     });
@@ -25,18 +34,24 @@ function setupPawns() {
     const seventhRank = document.getElementById("rank-7");
 
     let k = 1;
-    seventhRank?.childNodes.forEach((c: any) => {
-        const image = document.createElement("img");
-        image.id = `pawn-${LETTERS[k - 1]}7`;
-        image.classList.add("piece");
-        image.src = "../../images/pawn-black.svg";
-        image.draggable = true;
+    seventhRank?.childNodes.forEach((c: Node) => {
+        const pawnBlack = document.createElement("img");
+        pawnBlack.id = `pawn-${LETTERS[k - 1]}7`;
+        pawnBlack.classList.add("piece");
 
-        image.addEventListener("dragstart", (e: any) => {
+        pawnBlack.dataset.type = "pawn";
+        pawnBlack.dataset.side = "black";
+        pawnBlack.dataset.rank = "7";
+        pawnBlack.dataset.file = LETTERS[k - 1].toString();
+
+        pawnBlack.src = "../../images/pawn-black.svg";
+        pawnBlack.draggable = true;
+
+        pawnBlack.addEventListener("dragstart", (e: any) => {
             e.dataTransfer.setData("text", e.target.id);
         });
 
-        c.appendChild(image);
+        c.appendChild(pawnBlack);
 
         k++;
     });
@@ -201,7 +216,7 @@ function setupMinorPieces() {
     });
 
     const bishopFBlack = document.createElement("img");
-    bishopFBlack.id = "bishop-f-white";
+    bishopFBlack.id = "bishop-f-black";
     bishopFBlack.classList.add("piece");
     bishopFBlack.src = "../../images/bishop-black.svg";
     const f8 = document.getElementById("f8");
